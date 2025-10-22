@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body>
-<form action="home.html" method="post ">
+<form action="/login" method="post">
     <h1>Inicio de sesion </h1>
     <label for="username"> Usuario:</label> 
     <input type="text" id="username"   name="username" required>
     <label for="password"> Contraseña:</label>
     <input type="password" id="password" name="password" required>
     <p></p>
-    <input  type="submit" values="Iniciar sesion" >
+    <input  type="submit" value="Iniciar sesion" >
     <p></p>
 </form>    
 </body>
