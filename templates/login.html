@@ -6,14 +6,20 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body>
+{% if mensaje %}
+<script>
+  alert("{{ mensaje }}");
+</script>
+{% endif %}
 <form action="/login" method="post">
-    <h1>Inicio de sesion </h1>
+    <h1>Formulario Login</h1>
+    <p>
     <label for="username"> Usuario:</label> 
     <input type="text" id="username"   name="username" required>
     <label for="password"> Contraseña:</label>
     <input type="password" id="password" name="password" required>
     <p></p>
-    <input  type="submit" value="Iniciar sesion" >
+    <input  type="submit" value="Ingresar" >
     <p></p>
 </form>    
 </body>

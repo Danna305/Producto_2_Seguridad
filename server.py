@@ -19,10 +19,7 @@ def login():
     print("Contraseña cifrada:", cifrada)
     print("Hash:", hash_contra)
 
-    return redirect('/home')
-
-@app.route('/home')
-def home():
-    return render_template("home.html")
+    mensaje = "¡Sus datos han sido ingresados y la clave ha sido generada!"
+    return render_template("login.html", mensaje=mensaje)
 
 app.run(debug=True)
