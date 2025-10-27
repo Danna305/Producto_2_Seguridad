@@ -1,6 +1,12 @@
 # Servidor Web con Cifrado y Hash
 
-Aplicación Flask para demostración de cifrado simétrico y generación de hash.
+Aplicación Flask para demostración de algoritmos criptográficos: cifrado simétrico, cifrado asimétrico y generación de hash.
+
+## Autores
+
+**Elaborado por:**
+  - Danna Michelle Cruz Vázquez
+  - Alexia Sanchez Vazquez
 
 ## Requisitos Previos
 
@@ -51,12 +57,24 @@ El servidor se iniciará en modo debug en `http://127.0.0.1:5000/`
 ## Estructura del Proyecto
 
 - `server.py` - Servidor Flask con rutas de login
-- `seguridad.py` - Funciones de cifrado simétrico y generación de hash
+- `seguridad.py` - Funciones de cifrado simétrico, asimétrico y generación de hash
 - `templates/login.html` - Interfaz de usuario
 - `requirements.txt` - Lista de dependencias del proyecto
 
 ## Uso
 
-1. Accede a `http://127.0.0.1:5000/` en tu navegador
+1. Accede a `http://127.0.0.1:5001/` en tu navegador
 2. Ingresa un usuario y contraseña
-3. Los datos se cifrarán y se generará un hash que se mostrará en la consola
+3. Los datos se procesarán con los 3 algoritmos de seguridad:
+   - **Cifrado Simétrico (AES/Fernet)**: Usa la misma clave para cifrar y descifrar
+   - **Cifrado Asimétrico (RSA-2048)**: Usa clave pública para cifrar y clave privada para descifrar
+   - **Hash (SHA-256)**: Función unidireccional que no se puede descifrar
+4. Los resultados se mostrarán tanto en la interfaz web como en la consola del servidor
+
+## Características
+
+- ✅ Implementación de cifrado simétrico con AES (Fernet)
+- ✅ Implementación de cifrado asimétrico con RSA-2048
+- ✅ Generación de hash con SHA-256
+- ✅ Interfaz web amigable con visualización de resultados
+- ✅ Explicaciones de cada algoritmo criptográfico
