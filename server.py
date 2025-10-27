@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-from seguridad import cifrar_simetrico, generar_hash
+from seguridad import cifrar_simetrico, cifrar_asimetrico, generar_hash
 
 app = Flask(__name__)
 
@@ -12,14 +12,31 @@ def login():
     usuario = request.form['username']
     contraseña = request.form['password']
 
-    cifrada = cifrar_simetrico(contraseña)
+    # Aplicar los 3 tipos de algoritmos requeridos
+    cifrada_simetrica = cifrar_simetrico(contraseña)
+    cifrada_asimetrica = cifrar_asimetrico(contraseña)
     hash_contra = generar_hash(contraseña)
 
-    print("Usuario:", usuario)
-    print("Contraseña cifrada:", cifrada)
-    print("Hash:", hash_contra)
+    # Mostrar resultados en consola
+    print("\n" + "="*60)
+    print("RESULTADOS DE SEGURIDAD")
+    print("="*60)
+    print(f"Usuario: {usuario}")
+    print(f"\n1. CIFRADO SIMÉTRICO (AES/Fernet):")
+    print(f"   {cifrada_simetrica}")
+    print(f"\n2. CIFRADO ASIMÉTRICO (RSA-2048):")
+    print(f"   {cifrada_asimetrica}")
+    print(f"\n3. HASH (SHA-256):")
+    print(f"   {hash_contra}")
+    print("="*60 + "\n")
 
-    mensaje = "¡Sus datos han sido ingresados y la clave ha sido generada!"
-    return render_template("login.html", mensaje=mensaje)
+    mensaje = "¡Datos procesados correctamente! Revisa la consola para ver los resultados de cifrado."
+    return render_template("login.html",
+                         mensaje=mensaje,
+                         usuario=usuario,
+                         cifrado_simetrico=cifrada_simetrica,
+                         cifrado_asimetrico=cifrada_asimetrica[:80] + "...",  # Mostrar solo parte
+                         hash_generado=hash_contra)
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, host='127.0.0.1', port=5001)
